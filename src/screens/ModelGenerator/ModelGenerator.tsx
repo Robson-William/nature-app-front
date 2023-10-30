@@ -1,29 +1,35 @@
+import './style.css';
+
 export default function ModelGenerator(){
     return (
         <>
             <form className="panel">
-                <div className="area-input field">
-                    <input name="width" placeholder="Largura" className="width-input field"/>
+                <div className="input-area">
+                    <input type="number" name="width" placeholder="Largura" className="width-input field" />
                     <span>X</span>
                     <input name="height" placeholder="Altura" className="height-input field"/>
                     <span>=</span>
-                    <input name="area" className="area-input field"/>
+                    <input name="area" placeholder="Area" className="area-input field"/>
                 </div>
+
                 <div className="info">
-                    <span className="area-info field">100</span>
-                    <span className="productive-unit-info field">50</span>
+                    <input className="area-info field" value="100" name="area-livre"/>
+                    <input className="productive-unit-info field" value="50" name="productive-unit"/>
                 </div>
-                <div className="hortalicas">
-                    <div className="hortalicas field">
-                        <span></span>
+
+                <div className="hortalicas-list">
+                    <div className="hortalicas">
+                        <input type="radio" name="hortalica" value="Alface" className="choice"/>
+                        <label>Alface</label>
                     </div>
                 </div>
+
                 <div className="production">
-                    <label>Produção desejada</label>
-                    <input name="production" placeholder="" className="production-input field"/>
+                    <input name="production" placeholder="Produção desejada" className="production-input field"/>
                 </div>
+
                 <div className="button">
-                    <span>Gerar Modelo</span>
+                    <button>Gerar Modelo</button>
                 </div>
             </form>
 
