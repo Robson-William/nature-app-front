@@ -4,7 +4,7 @@ import "./style.css";
 export default function Row(){
     return (
         <>
-            <div className="fila">
+            <div className="row">
                 <ProductiveUnit />
             </div>
         </>

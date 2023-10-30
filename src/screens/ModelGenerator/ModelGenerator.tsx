@@ -8,14 +8,16 @@ export default function ModelGenerator(){
                 <div className="input-area">
                     <input type="number" name="width" placeholder="Largura" className="width-input field" />
                     <span>X</span>
-                    <input name="height" placeholder="Altura" className="height-input field"/>
+
+                    <input type="number" name="height" placeholder="Altura" className="height-input field"/>
                     <span>=</span>
-                    <input name="area" placeholder="Area" className="area-input field"/>
+
+                    <input type="number" name="area" placeholder="Area" className="area-input field" disabled/>
                 </div>
 
                 <div className="info">
-                    <input className="area-info field" value="100" name="area-livre"/>
-                    <input className="productive-unit-info field" value="50" name="productive-unit"/>
+                    <input type="number" className="area-info field" value="100" name="area-livre" disabled />
+                    <input type="number" className="productive-unit-info field" value="50" name="productive-unit"disabled />
                 </div>
 
                 <div className="hortalicas-list">
@@ -26,7 +28,7 @@ export default function ModelGenerator(){
                 </div>
 
                 <div className="production">
-                    <input name="production" placeholder="Produção desejada" className="production-input field"/>
+                    <input type="text" name="production" placeholder="Produção desejada" className="production-input field"/>
                 </div>
 
                 <div className="button">
@@ -37,7 +39,7 @@ export default function ModelGenerator(){
             <div className="model-area">
                 <div className="model">
                     <span>Espaço para circulação</span>
-                    
+
                     <Row />
                 </div>
             </div>
