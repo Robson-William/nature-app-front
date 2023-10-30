@@ -1,3 +1,4 @@
+import Row from '../../components/Row/Row';
 import './style.css';
 
 export default function ModelGenerator(){
@@ -36,13 +37,8 @@ export default function ModelGenerator(){
             <div className="model-area">
                 <div className="model">
                     <span>Espaço para circulação</span>
-                    <div className="fila">
-                        <div className="productive-unit">
-                            <div className="seeds">
-
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <Row />
                 </div>
             </div>
         </>
