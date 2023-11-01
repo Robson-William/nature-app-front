@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Seed from "../Seed/Seed";
 import "./style.css";
 
 export default function ProductiveUnit({info}){
-    const keys = [...Array(info.production).keys()];
+    const keys = [...Array(info.hortalica[0].unitArea * 100).keys()];
 
     return (
         <>

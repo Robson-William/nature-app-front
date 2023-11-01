@@ -1,14 +1,26 @@
 import { useState } from 'react';
-import Row from '../../components/Row/Row';
 import './style.css';
 import Model from '../../components/Model/Model';
 
-type Measures = {
+declare interface Hortalica {
+    name: string,
+    unit: string,
+    distLine: number,
+    distSeed: number,
+    unitArea: number,
+    growingDays: number,
+    seedlingsFirstPlanting: number,
+    unitsProduced: number,
+    unitsNeedToSell: number
+}
+
+interface Measures {
     width: number,
     height: number,
     area: number,
     freeSpace: number,
     productiveUnit: number,
+    hortalica: Hortalica,
     production: number
 }
 
@@ -28,7 +40,7 @@ const mockHortalicas = [
 
 export default function ModelGenerator(){
     const [hortalicas, setHortalicas] = useState(mockHortalicas);
-    const [measures, setMeasures] = useState({});
+    const [measures, setMeasures] = useState<Measures>();
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
     const [area, setArea] = useState(0);
@@ -50,7 +62,7 @@ export default function ModelGenerator(){
     }
 
     function handleChangeHortalica(event){
-        setHortalica(event.target.valueAsNumber);
+        setHortalica(event.target.value);
     }
 
     function handleGetArea(){
@@ -182,7 +194,7 @@ export default function ModelGenerator(){
             </form>
 
             <div className="model-area">
-                <Model info={measures}/>
+                {measures ? <Model info={measures}/> : null}
             </div>
         </>
     )

@@ -1,4 +1,5 @@
 .seeds {
+    display: flex;
     background-color: #24c046;
     width: 15px;
     height: 15px;
