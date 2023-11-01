@@ -8,7 +8,8 @@ type Measures = {
     height: number,
     area: number,
     freeSpace: number,
-    productiveUnit: number
+    productiveUnit: number,
+    production: number
 }
 
 const mockHortalicas = [
@@ -37,19 +38,19 @@ export default function ModelGenerator(){
     const [hortalica, setHortalica] = useState();
 
     function handleChangeWidth(event){
-        setWidth(event.target.value);
+        setWidth(event.target.valueAsNumber);
     }
 
     function handleChangeHeight(event){
-        setHeight(event.target.value);
+        setHeight(event.target.valueAsNumber);
     }
 
     function handleChangeProduction(event){
-        setProduction(event.target.value);
+        setProduction(event.target.valueAsNumber);
     }
 
     function handleChangeHortalica(event){
-        setHortalica(event.target.value);
+        setHortalica(event.target.valueAsNumber);
     }
 
     function handleGetArea(){
@@ -66,9 +67,16 @@ export default function ModelGenerator(){
         return freespace;
     }
 
+    function getProductiveUnit(){
+        const productiveUnit = freeSpace * 0.10;
+
+        setProductiveUnitSize(productiveUnit);
+        return productiveUnit;
+    }
+
     function getHortalica(){
         const newHortalica = hortalicas.filter((hortalicaObj) => hortalicaObj.name === hortalica)
-        console.log(newHortalica);
+
         return newHortalica;
     }
 
@@ -80,10 +88,11 @@ export default function ModelGenerator(){
             height: height,
             area: handleGetArea(),
             freeSpace: handleGetFreespace(),
-            productiveUnit: 10,
-            hortalica: getHortalica()
+            productiveUnit: getProductiveUnit(),
+            hortalica: getHortalica(),
+            production: production
         }
-        console.log(newMeasures)
+
         setMeasures(newMeasures)
     }
 
@@ -143,7 +152,7 @@ export default function ModelGenerator(){
 
                 <div className="hortalicas-list">
                     {mockHortalicas.map((hortalica) => (
-                        <div className="hortalicas">
+                        <div className="hortalicas" key={hortalica.name}>
                             <input
                                 type="radio"
                                 name="hortalica"
@@ -159,7 +168,7 @@ export default function ModelGenerator(){
 
                 <div className="production">
                     <input
-                        type="text"
+                        type="number"
                         name="production"
                         placeholder="Produção desejada"
                         className="production-input field"
