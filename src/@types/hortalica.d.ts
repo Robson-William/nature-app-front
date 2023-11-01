@@ -1,4 +1,4 @@
-interface Hortalica {
+declare interface Hortalica {
     name: string,
     unit: string,
     distLine: number,

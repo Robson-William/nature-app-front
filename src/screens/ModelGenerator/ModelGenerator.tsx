@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Row from '../../components/Row/Row';
 import './style.css';
+import Model from '../../components/Model/Model';
 
 type Measures = {
     width: number,
@@ -55,12 +56,20 @@ export default function ModelGenerator(){
         const area = width * height;
 
         setArea(area);
+        return area;
     }
 
     function handleGetFreespace(){
         const freespace = area * 0.75;
 
         setFreeSpace(freespace);
+        return freespace;
+    }
+
+    function getHortalica(){
+        const newHortalica = hortalicas.filter((hortalicaObj) => hortalicaObj.name === hortalica)
+        console.log(newHortalica);
+        return newHortalica;
     }
 
     function addMeasures(event){
@@ -72,8 +81,9 @@ export default function ModelGenerator(){
             area: handleGetArea(),
             freeSpace: handleGetFreespace(),
             productiveUnit: 10,
-            hortalica: hortalica
+            hortalica: getHortalica()
         }
+        console.log(newMeasures)
         setMeasures(newMeasures)
     }
 
@@ -163,11 +173,7 @@ export default function ModelGenerator(){
             </form>
 
             <div className="model-area">
-                <div className="model">
-                    <span>Espaço para circulação</span>
-
-                    <Row />
-                </div>
+                <Model info={measures}/>
             </div>
         </>
     )

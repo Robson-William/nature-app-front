@@ -1,4 +1,4 @@
-interface ModelData {
+declare interface ModelData {
     width: number,
     height: number,
     area: number,
