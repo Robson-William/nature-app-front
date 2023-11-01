@@ -2,7 +2,9 @@ import ProductiveUnit from "../ProductiveUnit/ProductiveUnit";
 import "./style.css";
 
 export default function Row({info}){
-    const keys = [...Array(info.production).keys()];
+    const arrayLength = Math.trunc(info.production / (info.hortalica[0].unitArea * 100));
+    
+    const keys = [...Array(arrayLength).keys()];
 
     return (
         <>
