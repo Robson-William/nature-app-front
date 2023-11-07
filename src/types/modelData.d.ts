@@ -1,4 +1,4 @@
-declare interface ModelData {
+export declare type ModelData = {
     width: number,
     height: number,
     area: number,

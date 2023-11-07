@@ -1,4 +1,4 @@
-declare interface Hortalica {
+export declare type Hortalica = {
     name: string,
     unit: string,
     distLine: number,

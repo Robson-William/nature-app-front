@@ -1,8 +1,9 @@
+import * as React from 'react';
 import { useState } from 'react';
 import './style.css';
 import Model from '../../components/Model/Model';
 
-declare interface Hortalica {
+type Hortalica = {
     name: string,
     unit: string,
     distLine: number,
@@ -14,7 +15,7 @@ declare interface Hortalica {
     unitsNeedToSell: number
 }
 
-interface Measures {
+type Measures = {
     width: number,
     height: number,
     area: number,
@@ -36,10 +37,10 @@ const mockHortalicas = [
         unitsProduced: 56,
         unitsNeedToSell: 1
     }
-]
+] as Hortalica[]
 
 export default function ModelGenerator(){
-    const [hortalicas, setHortalicas] = useState(mockHortalicas);
+    const [hortalicas, setHortalicas] = useState<Hortalica[]>(mockHortalicas);
     const [measures, setMeasures] = useState<Measures>();
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
@@ -47,21 +48,21 @@ export default function ModelGenerator(){
     const [production, setProduction] = useState(0);
     const [productiveUnitSize, setProductiveUnitSize] = useState(0);
     const [freeSpace, setFreeSpace] = useState(0);
-    const [hortalica, setHortalica] = useState();
+    const [hortalica, setHortalica] = useState('');
 
-    function handleChangeWidth(event){
-        setWidth(event.target.valueAsNumber);
+    function handleChangeWidth(event: React.ChangeEvent<HTMLInputElement>){
+        setWidth(event.currentTarget.valueAsNumber);
     }
 
-    function handleChangeHeight(event){
+    function handleChangeHeight(event: React.ChangeEvent<HTMLInputElement>){
         setHeight(event.target.valueAsNumber);
     }
 
-    function handleChangeProduction(event){
+    function handleChangeProduction(event: React.ChangeEvent<HTMLInputElement>){
         setProduction(event.target.valueAsNumber);
     }
 
-    function handleChangeHortalica(event){
+    function handleChangeHortalica(event: React.ChangeEvent<HTMLInputElement>){
         setHortalica(event.target.value);
     }
 
@@ -88,14 +89,16 @@ export default function ModelGenerator(){
 
     function getHortalica(){
         const newHortalica = hortalicas.filter((hortalicaObj) => hortalicaObj.name === hortalica)
-
-        return newHortalica;
+    
+        return newHortalica[0];
     }
 
-    function addMeasures(event){
+    function addMeasures(event: React.FormEvent){
         event.preventDefault();
 
-        const newMeasures = {
+        let newMeasures = {} as Measures;
+
+        newMeasures = {
             width: width,
             height: height,
             area: handleGetArea(),

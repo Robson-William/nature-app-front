@@ -1,4 +1,4 @@
-declare interface Measures {
+export declare type Measures = {
     size: {
         width: number,
         height: number,
