@@ -1,4 +1,4 @@
-import Row from "../Row/Row";
+import ProductiveUnit from "../ProductiveUnit/ProductiveUnit";
 import "./style.css";
 
 type Hortalica = {
@@ -26,13 +26,17 @@ type Props = {
 }
 
 export default function Model({info}:Props){
+    const arrayLength = Math.trunc(info.production / (info.hortalica.unitArea * 100));
+    
+    const keys = [...Array(arrayLength).keys()];
+
     return (
         <>
-            <div className="model">
-                <span>Espaço para circulação</span>
-
-                <Row info={info}/>
-            </div>
+            {
+                keys.map((item) => (
+                    <ProductiveUnit info={info} key={item}/>
+                ))
+            }
         </>
     )
 }
