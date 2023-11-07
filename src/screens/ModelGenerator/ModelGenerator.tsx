@@ -195,10 +195,13 @@ export default function ModelGenerator(){
                     <button type='submit'>Gerar Modelo</button>
                 </div>
             </form>
-
-            <div className="model-area">
-                {measures ? <Model info={measures}/> : null}
-            </div>
+            
+            {measures ? (
+                
+                <div className='model'>
+                    <Model info={measures} />
+                </div>
+            ): null}
         </>
     )
 }
