@@ -27,7 +27,18 @@ type Measures = {
 
 const mockHortalicas = [
     {
-        name: 'Alface',
+        name: 'Alface Americana',
+        unit: 'Cabeça',
+        distLine: 0.3,
+        distSeed: 0.3,
+        unitArea: 0.09,
+        growingDays: 45,
+        seedlingsFirstPlanting: 74,
+        unitsProduced: 56,
+        unitsNeedToSell: 1
+    },
+    {
+        name: 'Couve',
         unit: 'Maço',
         distLine: 0.4,
         distSeed: 0.4,
@@ -162,7 +173,7 @@ export default function ModelGenerator(){
                     <input
                         type="number"
                         className="area-info field"
-                        value={freeSpace}
+                        value={area * 0.75}
                         name="area-livre"
                         disabled
                     />
@@ -208,7 +219,7 @@ export default function ModelGenerator(){
             
             {measures ? (
                 <div className='model'>
-                    <Model info={measures} />
+                    <Model info={measures}/>
                 </div>
             ): null}
         </>
