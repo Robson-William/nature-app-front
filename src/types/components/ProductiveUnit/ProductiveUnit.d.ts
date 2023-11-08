@@ -10,16 +10,19 @@ type Hortalica = {
     unitsProduced: number;
     unitsNeedToSell: number;
 };
-type Props = {
-    info: {
-        width: number;
-        height: number;
-        area: number;
-        freeSpace: number;
-        productiveUnit: number;
-        hortalica: Hortalica;
-        production: number;
-    };
+type Measures = {
+    width: number;
+    height: number;
+    area: number;
+    freeSpace: number;
+    productiveUnit: number;
+    hortalica: Hortalica;
+    production: number;
 };
-export default function ProductiveUnit({ info }: Props): import("react/jsx-runtime").JSX.Element;
+type Props = {
+    info: Measures;
+    seeds: number | undefined;
+    seedsPerUnit: number;
+};
+export default function ProductiveUnit({ info, seeds, seedsPerUnit }: Props): import("react/jsx-runtime").JSX.Element;
 export {};
