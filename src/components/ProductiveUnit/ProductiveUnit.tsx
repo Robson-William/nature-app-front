@@ -24,14 +24,13 @@ type Measures = {
 }
 
 type Props = {
-    info: Measures
-    seeds: number | undefined
+    info: Measures,
+    seeds: number | undefined,
+    seedsPerUnit: number
 }
 
-export default function ProductiveUnit({info, seeds}:Props){
-    const ahahaha = info.hortalica.unitArea * 100;
+export default function ProductiveUnit({info, seeds, seedsPerUnit}:Props){
     const keys = [...Array(seeds).keys()];
-    console.log(seeds)
 
     return (
         <>
@@ -39,7 +38,7 @@ export default function ProductiveUnit({info, seeds}:Props){
                 {
                     keys.map((item) => (
                         <Seed key={item}/>
-                    )).filter((e,k) => k < ahahaha)
+                    )).filter((e,k) => k < seedsPerUnit)
                 }
             </div>
         </>

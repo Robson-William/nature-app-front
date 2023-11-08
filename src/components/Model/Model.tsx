@@ -25,7 +25,7 @@ type Measures = {
 }
 
 type Props = {
-    info: Measures
+    info: Measures,
 }
 
 export default function Model({info}:Props){
@@ -37,8 +37,8 @@ export default function Model({info}:Props){
 
     const gridStyle = {
         display: "grid",
-        gridTemplateColumns: `repeat(${calcProductiveUnitPerColumn(info)}, 100px)`,
-        gridTemplateRows: `repeat(${calcProductiveUnitPerColumn(info)}, 100px)`,
+        gridTemplateColumns: `repeat(${calcProductiveUnitPerColumn(info)}, 60px)`,
+        gridTemplateRows: `repeat(${calcProductiveUnitPerColumn(info)}, 60px)`,
         rowGap: "30px",
         width: "100%",
         maxHeight: "100%",
@@ -66,7 +66,7 @@ export default function Model({info}:Props){
                 {
                     keys.map((item) => (
                         <div className="productive-unit-div" key={item}>
-                            <ProductiveUnit info={info} seeds={getSeeds()}/>
+                            <ProductiveUnit info={info} seeds={getSeeds()} seedsPerUnit={seedsPerUnit}/>
                         </div>
                     ))
                 }
