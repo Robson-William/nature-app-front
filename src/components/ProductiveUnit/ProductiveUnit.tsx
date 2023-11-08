@@ -13,20 +13,25 @@ type Hortalica = {
     unitsNeedToSell: number
 }
 
-type Props = {
-    info: {
-        width: number,
-        height: number,
-        area: number,
-        freeSpace: number,
-        productiveUnit: number,
-        hortalica: Hortalica,
-        production: number
-    }
+type Measures = {
+    width: number,
+    height: number,
+    area: number,
+    freeSpace: number,
+    productiveUnit: number,
+    hortalica: Hortalica,
+    production: number
 }
 
-export default function ProductiveUnit({info}:Props){
-    const keys = [...Array(info.hortalica.unitArea * 100).keys()];
+type Props = {
+    info: Measures
+    seeds: number | undefined
+}
+
+export default function ProductiveUnit({info, seeds}:Props){
+    const ahahaha = info.hortalica.unitArea * 100;
+    const keys = [...Array(seeds).keys()];
+    console.log(seeds)
 
     return (
         <>
@@ -34,7 +39,7 @@ export default function ProductiveUnit({info}:Props){
                 {
                     keys.map((item) => (
                         <Seed key={item}/>
-                    ))
+                    )).filter((e,k) => k < ahahaha)
                 }
             </div>
         </>

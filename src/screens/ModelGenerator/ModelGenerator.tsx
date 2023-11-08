@@ -28,14 +28,14 @@ type Measures = {
 const mockHortalicas = [
     {
         name: 'Alface',
-        unit: 'Cabeça',
-        distLine: 0.3,
-        distSeed: 0.3,
-        unitArea: 0.09,
-        growingDays: 45,
-        seedlingsFirstPlanting: 74,
-        unitsProduced: 56,
-        unitsNeedToSell: 1
+        unit: 'Maço',
+        distLine: 0.4,
+        distSeed: 0.4,
+        unitArea: 0.16,
+        growingDays: 60,
+        seedlingsFirstPlanting: 42,
+        unitsProduced: 10,
+        unitsNeedToSell: 3
     }
 ] as Hortalica[]
 
@@ -81,7 +81,7 @@ export default function ModelGenerator(){
     }
 
     function getProductiveUnit(){
-        const productiveUnit = freeSpace * 0.10;
+        const productiveUnit = 1.2 * 1.2;
 
         setProductiveUnitSize(productiveUnit);
         return productiveUnit;
@@ -109,6 +109,16 @@ export default function ModelGenerator(){
         }
 
         setMeasures(newMeasures)
+    }
+    
+    const columns = {
+        display: "grid",
+        gridRowGap: "50px",
+        justifyContent: "center",
+        backgroundColor: "#D9D9D9",
+        width: "60%",
+        maxHeight: "100%",
+        margin: "auto",
     }
 
     return (
@@ -159,7 +169,7 @@ export default function ModelGenerator(){
                     <input
                         type="number"
                         className="productive-unit-info field"
-                        value="50"
+                        value={productiveUnitSize}
                         name="productive-unit"
                         disabled
                     />
@@ -197,7 +207,6 @@ export default function ModelGenerator(){
             </form>
             
             {measures ? (
-                
                 <div className='model'>
                     <Model info={measures} />
                 </div>

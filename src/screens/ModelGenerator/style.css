@@ -2,8 +2,10 @@
     display: 'flex';
     background-color: #909090;
     flex-direction: column;
+    min-width: 20%;
     max-width: 20%;
     min-height: 90vh;
+    max-height: 90vh;
     justify-content: "center";
     align-items: "center";
 }
@@ -59,6 +61,8 @@
 
 /*          Model         */
 
-.model-area {
+.model {
+    background-color: #D9D9D9;
     width: 100%;
+    min-height: 100vh;
 }
