@@ -25,7 +25,7 @@ type Measures = {
 
 type Props = {
     info: Measures,
-    seeds: number | undefined,
+    seeds?: number,
     seedsPerUnit: number
 }
 
@@ -35,11 +35,11 @@ export default function ProductiveUnit({info, seeds, seedsPerUnit}:Props){
     return (
         <>
             <div className="productive-unit">
-                {
+                {seeds! > 0 && (
                     keys.map((item) => (
                         <Seed key={item}/>
                     )).filter((e,k) => k < seedsPerUnit)
-                }
+                )}
             </div>
         </>
     )
