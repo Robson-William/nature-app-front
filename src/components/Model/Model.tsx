@@ -1,4 +1,3 @@
-import {useState} from "react";
 import ProductiveUnit from "../ProductiveUnit/ProductiveUnit";
 import "./style.css";
 
@@ -32,13 +31,17 @@ export default function Model({info}:Props){
     let production = info.production;
 
     const calcProductiveUnitPerColumn = (info:Measures) => {
-        return Math.trunc((info.width * 0.75) / info.productiveUnit);
+        return Math.trunc((info.height * 0.75) / info.productiveUnit);
+    }
+
+    const calcProductiveUnitPerRow = (info:Measures) => {
+        return Math.trunc((info.height * 0.75) / info.productiveUnit);
     }
 
     const gridStyle = {
         display: "grid",
         gridTemplateColumns: `repeat(${calcProductiveUnitPerColumn(info)}, 60px)`,
-        gridTemplateRows: `repeat(${calcProductiveUnitPerColumn(info)}, 60px)`,
+        gridTemplateRows: `repeat(${calcProductiveUnitPerRow(info)}, 60px)`,
         rowGap: "30px",
         width: "100%",
         maxHeight: "100%",
@@ -48,7 +51,10 @@ export default function Model({info}:Props){
     const seedsPerUnit = info.hortalica.unitArea * 100;
     
     const arrayLength = Math.ceil(info.production / seedsPerUnit);
+    const calc = Math.trunc(info.freeSpace / info.productiveUnit);
+    
     const keys = [...Array(arrayLength).keys()];
+    const emptyDiv = [...Array(calc - arrayLength).keys()]
 
     function getSeeds(){
         try {
@@ -65,6 +71,13 @@ export default function Model({info}:Props){
             <div style={gridStyle}>
                 {
                     keys.map((item) => (
+                        <div className="productive-unit-div" key={item}>
+                            <ProductiveUnit info={info} seeds={getSeeds()} seedsPerUnit={seedsPerUnit}/>
+                        </div>
+                    ))
+                }
+                {
+                    emptyDiv.map((item) => (
                         <div className="productive-unit-div" key={item}>
                             <ProductiveUnit info={info} seeds={getSeeds()} seedsPerUnit={seedsPerUnit}/>
                         </div>

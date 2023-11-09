@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './style.css';
 import Model from '../../components/Model/Model';
 
@@ -57,7 +57,7 @@ export default function ModelGenerator(){
     const [height, setHeight] = useState(0);
     const [area, setArea] = useState(0);
     const [production, setProduction] = useState(0);
-    const [productiveUnitSize, setProductiveUnitSize] = useState(0);
+    const [productiveUnitSize, setProductiveUnitSize] = useState(1.44);
     const [freeSpace, setFreeSpace] = useState(0);
     const [hortalica, setHortalica] = useState('');
 
@@ -77,25 +77,18 @@ export default function ModelGenerator(){
         setHortalica(event.target.value);
     }
 
-    function handleGetArea(){
-        const area = width * height;
-
-        setArea(area);
-        return area;
+    function handleGetArea(event: React.ChangeEvent<HTMLInputElement>){
+        setArea(event.target.valueAsNumber);
     }
 
-    function handleGetFreespace(){
-        const freespace = area * 0.75;
-
-        setFreeSpace(freespace);
-        return freespace;
+    function handleGetFreespace(event: React.ChangeEvent<HTMLInputElement>){
+        setFreeSpace(event.target.valueAsNumber);
     }
 
     function getProductiveUnit(){
         const productiveUnit = 1.2 * 1.2;
 
         setProductiveUnitSize(productiveUnit);
-        return productiveUnit;
     }
 
     function getHortalica(){
@@ -112,25 +105,20 @@ export default function ModelGenerator(){
         newMeasures = {
             width: width,
             height: height,
-            area: handleGetArea(),
-            freeSpace: handleGetFreespace(),
-            productiveUnit: getProductiveUnit(),
+            area: area,
+            freeSpace: freeSpace,
+            productiveUnit: productiveUnitSize,
             hortalica: getHortalica(),
             production: production
         }
 
         setMeasures(newMeasures)
     }
-    
-    const columns = {
-        display: "grid",
-        gridRowGap: "50px",
-        justifyContent: "center",
-        backgroundColor: "#D9D9D9",
-        width: "60%",
-        maxHeight: "100%",
-        margin: "auto",
-    }
+
+    useEffect(() => {
+        setArea(width * height);
+        setFreeSpace(area * 0.75);
+    })
 
     return (
         <>
@@ -165,7 +153,8 @@ export default function ModelGenerator(){
                         placeholder="Area"
                         className="area-input field"
                         value={area}
-                        disabled
+                        onChange={(e) => setArea(e.currentTarget.valueAsNumber)}
+                        readOnly
                     />
                 </div>
 
@@ -174,8 +163,9 @@ export default function ModelGenerator(){
                         type="number"
                         className="area-info field"
                         value={area * 0.75}
+                        onChange={(e) => handleGetFreespace(e)}
                         name="area-livre"
-                        disabled
+                        readOnly
                     />
                     <input
                         type="number"
