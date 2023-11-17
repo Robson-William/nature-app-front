@@ -208,9 +208,15 @@ export default function ModelGenerator(){
             </form>
             
             {measures ? (
-                <div className='model'>
-                    <Model info={measures}/>
+                <div id='garden'>
+                    <h2 id='title'>
+                        Horta ({measures.area}m²), {Math.trunc(measures.freeSpace / measures.productiveUnit)} unidades produtivas
+                    </h2>
+                    <div className='model'>
+                        <Model info={measures}/>
+                    </div>
                 </div>
+
             ): null}
         </>
     )

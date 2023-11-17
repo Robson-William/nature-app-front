@@ -60,8 +60,15 @@
 
 /*          Model         */
 
+#garden {
+    margin-left: 30px;
+}
+
+#title {
+    text-align: center;
+}
+
 .model {
     background-color: #76BA99;
-    margin-left: 20px;
     border-radius: 10px;
 }
