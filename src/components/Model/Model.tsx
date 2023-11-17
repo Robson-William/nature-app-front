@@ -40,12 +40,12 @@ export default function Model({info}:Props){
 
     const gridStyle = {
         display: "grid",
-        gridTemplateColumns: `repeat(${calcProductiveUnitPerColumn(info)}, 60px)`,
-        gridTemplateRows: `repeat(${calcProductiveUnitPerRow(info)}, 60px)`,
-        rowGap: "30px",
-        width: "100%",
+        gridTemplateColumns: `repeat(${calcProductiveUnitPerColumn(info)}, 15px)`,
+        gridTemplateRows: `repeat(${calcProductiveUnitPerRow(info)}, 15px)`,
+        rowGap: "7px",
         maxHeight: "100%",
-        padding: "30px"
+        padding: "30px",
+        justifyContent: "center"
     }
 
     const seedsPerUnit = info.hortalica.unitArea * 100;
