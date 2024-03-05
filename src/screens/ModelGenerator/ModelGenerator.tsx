@@ -16,8 +16,8 @@ type Hortalica = {
 }
 
 type Measures = {
-    width: number,
-    height: number,
+    width: number | undefined,
+    height: number | undefined,
     area: number,
     freeSpace: number,
     productiveUnit: number,
@@ -53,8 +53,8 @@ const mockHortalicas = [
 export default function ModelGenerator(){
     const [hortalicas, setHortalicas] = useState<Hortalica[]>(mockHortalicas);
     const [measures, setMeasures] = useState<Measures>();
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
+    const [width, setWidth] = useState<number | undefined>(undefined);
+    const [height, setHeight] = useState<number | undefined>(undefined);
     const [area, setArea] = useState(0);
     const [production, setProduction] = useState(0);
     const [productiveUnitSize, setProductiveUnitSize] = useState(1.44);
@@ -62,27 +62,39 @@ export default function ModelGenerator(){
     const [hortalica, setHortalica] = useState('');
 
     function handleChangeWidth(event: React.ChangeEvent<HTMLInputElement>){
-        setWidth(event.currentTarget.valueAsNumber);
+        if(event.currentTarget.valueAsNumber != null){
+            setWidth(event.currentTarget.valueAsNumber);
+        }
     }
 
     function handleChangeHeight(event: React.ChangeEvent<HTMLInputElement>){
-        setHeight(event.target.valueAsNumber);
+        if(event.currentTarget.valueAsNumber != null){
+            setHeight(event.target.valueAsNumber);
+        }
     }
 
     function handleChangeProduction(event: React.ChangeEvent<HTMLInputElement>){
-        setProduction(event.target.valueAsNumber);
+        if(event.target.valueAsNumber != null){
+            setProduction(event.target.valueAsNumber);
+        }
     }
 
-    function handleChangeHortalica(event: React.ChangeEvent<HTMLInputElement>){
-        setHortalica(event.target.value);
+    function handleChangeHortalica(event: React.ChangeEvent<HTMLSelectElement>){
+        if(event.target.value != null){
+            setHortalica(event.target.value);
+        }
     }
 
     function handleGetArea(event: React.ChangeEvent<HTMLInputElement>){
-        setArea(event.target.valueAsNumber);
+        if(event.target.valueAsNumber != null){
+            setArea(event.target.valueAsNumber);
+        }
     }
 
     function handleGetFreespace(event: React.ChangeEvent<HTMLInputElement>){
-        setFreeSpace(event.target.valueAsNumber);
+        if(event.target.valueAsNumber != null){
+            setFreeSpace(event.target.valueAsNumber);
+        }
     }
 
     function getProductiveUnit(){
@@ -116,9 +128,11 @@ export default function ModelGenerator(){
     }
 
     useEffect(() => {
-        setArea(width * height);
+        if(width != undefined && height != undefined){
+            setArea(width * height);
+        }
         setFreeSpace(area * 0.75);
-    })
+    }, [width, height])
 
     return (
         <>
@@ -177,19 +191,13 @@ export default function ModelGenerator(){
                 </div>
 
                 <div className="hortalicas-list">
+                    <select name="hortalicas" onChange={(e) => handleChangeHortalica(e)}>
                     {mockHortalicas.map((hortalica) => (
-                        <div className="hortalicas" key={hortalica.name}>
-                            <input
-                                type="radio"
-                                name="hortalica"
-                                value={hortalica.name}
-                                className="choice"
-                                onChange={(e) => handleChangeHortalica(e)}
-                            />
-                            <label>{hortalica.name}</label>
-                        </div>
+                        <option className="hortalicas" value={hortalica.name} key={hortalica.name}>
+                            {hortalica.name}
+                        </option>
                     ))}
-                    
+                    </select>
                 </div>
 
                 <div className="production">

@@ -1,19 +1,23 @@
 .panel {
+    display: flex;
     background-color: #909090;
-    min-width: 22%;
-    max-width: 22%;
-    height: 90vh;
+    width: 80%;
     border-radius: 10px;
     padding: 5px;
-    position: sticky;
-    top: 5%;
+    justify-content: space-between;
+    align-self: center;
 }
 
 .field {
     background-color: white;
-    width: 53px;
+    width: 65px;
     padding: 10px;
     margin: 3px
+}
+
+.input-area {
+    display: flex;
+    align-items: center;
 }
 
 .info {
@@ -28,34 +32,31 @@
 
 .production {
     display: flex;
-    width: 100%;
 }
 
 .production input {
-    width: 100%;
+    width: 150px;
 }
 
 .hortalicas-list {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.hortalicas {
-    background-color: white;
-    width: 80%;
-    border: 1px solid;
-    padding: 8px;
+.hortalicas-list select {
+    height: 100%;
 }
 
 .button {
     display: flex;
-    width: 100%;
-    justify-content: center;
 }
 
 .button button {
     padding: 10px
+}
+
+.area-info-container {
+    text-align: center;
 }
 
 /*          Model         */

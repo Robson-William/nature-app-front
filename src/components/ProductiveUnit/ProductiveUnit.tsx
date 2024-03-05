@@ -14,8 +14,8 @@ type Hortalica = {
 }
 
 type Measures = {
-    width: number,
-    height: number,
+    width: number | undefined,
+    height: number | undefined,
     area: number,
     freeSpace: number,
     productiveUnit: number,

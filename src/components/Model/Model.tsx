@@ -14,8 +14,8 @@ type Hortalica = {
 }
 
 type Measures = {
-    width: number,
-    height: number,
+    width: number | undefined,
+    height: number | undefined,
     area: number,
     freeSpace: number,
     productiveUnit: number,
@@ -31,11 +31,15 @@ export default function Model({info}:Props){
     let production = info.production;
 
     const calcProductiveUnitPerColumn = (info:Measures) => {
-        return Math.trunc((info.height * 0.75) / info.productiveUnit);
+        if(info.height != undefined){
+            return Math.trunc((info.height * 0.75) / info.productiveUnit);
+        }
     }
 
     const calcProductiveUnitPerRow = (info:Measures) => {
-        return Math.trunc((info.height * 0.75) / info.productiveUnit);
+        if(info.height != undefined){
+            return Math.trunc((info.height * 0.75) / info.productiveUnit);
+        }
     }
 
     const gridStyle = {
