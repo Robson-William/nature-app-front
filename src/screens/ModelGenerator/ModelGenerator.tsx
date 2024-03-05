@@ -108,7 +108,7 @@ export default function ModelGenerator(){
             area: area,
             freeSpace: freeSpace,
             productiveUnit: productiveUnitSize,
-            hortalica: getHortalica(),
+            hortalica: mockHortalicas[0], //getHortalica()
             production: production
         }
 
@@ -177,7 +177,8 @@ export default function ModelGenerator(){
                 </div>
 
                 <div className="hortalicas-list">
-                    {mockHortalicas.map((hortalica) => (
+
+                    {/* {mockHortalicas.map((hortalica) => (
                         <div className="hortalicas" key={hortalica.name}>
                             <input
                                 type="radio"
@@ -188,7 +189,7 @@ export default function ModelGenerator(){
                             />
                             <label>{hortalica.name}</label>
                         </div>
-                    ))}
+                    ))} */}
                     
                 </div>
 
